@@ -91,25 +91,36 @@ function App() {
   const canPick = events.length > 0 && Math.abs(totalProbability - 1) < 0.001;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-6xl font-bold text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200">
+        <div className="text-center mb-16 relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+          <h1 className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-amber-300 via-amber-500 to-amber-700 mb-4 mt-8 tracking-wider uppercase" style={{ fontFamily: 'serif' }}>
             235 probability
           </h1>
-          <p className="text-white/60 text-lg">
-            Создайте события с вероятностями и выберите случайное
+          <div className="flex items-center justify-center gap-4 mb-3">
+            <div className="h-px w-20 bg-gradient-to-r from-transparent to-amber-600"></div>
+            <div className="w-2 h-2 bg-amber-500 rotate-45"></div>
+            <div className="h-px w-20 bg-gradient-to-l from-transparent to-amber-600"></div>
+          </div>
+          <p className="text-slate-400 text-sm uppercase tracking-widest">
+            Вероятностный селектор событий
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-10">
           {/* Events Section */}
           <div className="space-y-4">
-            <h2 className="text-white text-2xl font-bold mb-4 flex items-center gap-2">
-              <span>📋</span>
-              События
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 border-2 border-amber-500 flex items-center justify-center">
+                <div className="w-3 h-3 bg-amber-500"></div>
+              </div>
+              <h2 className="text-amber-400 text-xl font-bold uppercase tracking-wider" style={{ fontFamily: 'serif' }}>
+                События
+              </h2>
+              <div className="flex-1 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+            </div>
             
             <div className="space-y-3">
               <AnimatePresence>
@@ -129,10 +140,15 @@ function App() {
 
           {/* Picker Section */}
           <div className="space-y-4">
-            <h2 className="text-white text-2xl font-bold mb-4 flex items-center gap-2">
-              <span>🎲</span>
-              Выбор
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 border-2 border-amber-500 flex items-center justify-center">
+                <div className="w-3 h-3 bg-amber-500 rotate-45"></div>
+              </div>
+              <h2 className="text-amber-400 text-xl font-bold uppercase tracking-wider" style={{ fontFamily: 'serif' }}>
+                Выбор
+              </h2>
+              <div className="flex-1 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+            </div>
 
             <ProbabilityPicker
               onClick={pickRandomEvent}
@@ -143,12 +159,14 @@ function App() {
             <ResultDisplay result={selectedResult} />
 
             {/* Info Box */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-white/60 text-sm">
-              <p className="mb-2">
-                {/* <strong>Совет:</strong> Сумма всех вероятностей должна быть равна 1.0 */}
-              </p>
-              <p>
-                🔗 Все настройки сохраняются в URL - поделитесь ссылкой!
+            <div className="relative border border-amber-600/30 bg-slate-800/50 p-6 mt-8">
+              <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-amber-500"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-amber-500"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-amber-500"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-amber-500"></div>
+              
+              <p className="text-slate-400 text-xs uppercase tracking-wider text-center">
+                Настройки сохраняются в URL
               </p>
             </div>
           </div>
