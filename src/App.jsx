@@ -78,13 +78,13 @@ function App() {
     for (const event of events) {
       cumulative += event.probability;
       if (random <= cumulative) {
-        setSelectedResult(event);
+        setSelectedResult({ ...event, timestamp: Date.now() });
         return;
       }
     }
 
     // Fallback на последнее событие
-    setSelectedResult(events[events.length - 1]);
+    setSelectedResult({ ...events[events.length - 1], timestamp: Date.now() });
   };
 
   const totalProbability = events.reduce((sum, event) => sum + event.probability, 0);
@@ -166,7 +166,7 @@ function App() {
               <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-amber-500"></div>
               
               <p className="text-slate-400 text-xs uppercase tracking-wider text-center">
-                Настройки сохраняются в URL
+                Настройки сохраняются в URL, можно поделиться ссылкой с заполненными событиями или смело перезагружать случайно страницу
               </p>
             </div>
           </div>
